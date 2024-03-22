@@ -2,8 +2,10 @@ import { Grid, Paper, Divider, Stack, Box, Chip } from "@mui/material";
 import { useState } from "react";
 import { v4 as uuidv4, v5 as uuidv5 } from 'uuid';
 
-export function ProductContainer() {
-  const [filtro, setFiltro] = useState("")
+
+export function ProductContainer({filtro}) {
+  
+  
     const produtos = [
         { id: uuidv4(), nome: "Camiseta", categoria: "Vestuário", preço: 25.99, descrição: "Uma camiseta básica e confortável, perfeita para o dia a dia." },
         { id: uuidv4(), nome: "Tênis", categoria: "Calçados", preço: 59.99, descrição: "Um par de tênis esportivos elegantes e duráveis para várias atividades." },
@@ -33,6 +35,7 @@ export function ProductContainer() {
 
   return (
     <div style={{ margin: "10px" }}>
+      
       <Grid container spacing={3}>
         {produtos.filter(prod => prod.categoria.includes(filtro)).map((prod) => {
           return (

@@ -4,31 +4,42 @@ import {
   ListItemText,
   ListItem,
   Box,
+  Divider,
 } from "@mui/material";
+import { useState } from "react";
 
-export function FilterList() {
+export function FilterList({ state, setState }) {
   return (
-    <div style={{display:"fixed"}}>
+    <div style={{ display: "fixed" }}>
       <Box>
         <List>
           <ListItem>
-            <ListItemButton>
+            <ListItemButton onClick={() => setState("Vestuário")}>
               <ListItemText>Vestuário</ListItemText>
             </ListItemButton>
           </ListItem>
+          <Divider />
           <ListItem>
-            <ListItemButton>
+            <ListItemButton onClick={() => setState("Calçados")}>
               <ListItemText>Calçados</ListItemText>
             </ListItemButton>
           </ListItem>
+          <Divider />
           <ListItem>
-            <ListItemButton>
+            <ListItemButton onClick={() => setState("Eletrônicos")}>
               <ListItemText>Eletrônicos</ListItemText>
             </ListItemButton>
           </ListItem>
+          <Divider />
           <ListItem>
-            <ListItemButton>
+            <ListItemButton onClick={() => setState("Lazer")}>
               <ListItemText>Lazer</ListItemText>
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+          <ListItem>
+            <ListItemButton onClick={() => setState("")}>
+              <ListItemText>Tudo</ListItemText>
             </ListItemButton>
           </ListItem>
         </List>
