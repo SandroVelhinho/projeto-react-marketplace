@@ -11,7 +11,8 @@ export function Header() {
     <div style={{ display: "block" }}>
       <AppBar>
         <Stack direction="row" spacing={2}>
-          <Button variant="text" style={{ color: "white" }}>
+          <Button variant="text" style={{ color: "white" }}
+          onClick={() => navigate("/")}>
             Home
           </Button>
           <Button
