@@ -1,14 +1,24 @@
-import { AppBar, Button, Stack} from "@mui/material";
+import { AppBar, Button, Stack } from "@mui/material";
+import { Route, Router, Routes, useNavigate } from "react-router-dom";
+
+
+import { Login } from "./Login";
 
 export function Header() {
+  const navigate =  useNavigate()
+  
   return (
-    <div style={{display:"block"}}>
+    <div style={{ display: "block" }}>
       <AppBar>
-        <Stack direction="row" spacing={2}>     
+        <Stack direction="row" spacing={2}>
           <Button variant="text" style={{ color: "white" }}>
             Home
           </Button>
-          <Button variant="text" style={{ color: "white" }}>
+          <Button
+            variant="text"
+            style={{ color: "white" }}
+            onClick={() => navigate("/login")}
+          >
             Login
           </Button>
         </Stack>
