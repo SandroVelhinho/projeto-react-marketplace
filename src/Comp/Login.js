@@ -1,23 +1,51 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useState } from "react";
-import { Paper, Divider, TextField, Button, Stack } from "@mui/material";
+import {
+  Paper,
+  Divider,
+  TextField,
+  Button,
+  Stack,
+  Alert,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import CheckIcon from '@mui/icons-material/Check'
+import GppMaybeOutlinedIcon from '@mui/icons-material/GppMaybeOutlined';
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [visible, setVisible] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  if (success === true) {
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
+  }
+  if (error === true) {
+    setTimeout(() => {
+      setError(false);
+    }, 3000);
+  }
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     await signInWithEmailAndPassword(auth, email, pass)
       .then(() => {
-        console.log("sucesso");
-        setVisible(true);
+        setSuccess(true);
+        setLoading(false);
       })
-      .catch(() => console.log("creadenciais incorretas"));
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
   };
   return (
     <div style={{ marginTop: "4%" }}>
@@ -34,6 +62,7 @@ export function Login() {
               marginLeft: "4%",
               width: "50%",
             }}
+            type="email"
           />
           <Divider />
           <TextField
@@ -47,6 +76,7 @@ export function Login() {
               marginLeft: "4%",
               width: "50%",
             }}
+            type="password"
           />
           <Divider />
           <Button
@@ -84,7 +114,35 @@ export function Login() {
           </div>
         </Paper>
       </form>
-      {visible ? <h1>true</h1> : <h1>false</h1>}
+      {loading && (
+        <Backdrop>
+          <CircularProgress
+            color="inherit"
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          />
+        </Backdrop>
+      )}
+      {success && (
+        <Alert
+          severity="success"
+          onClose={() => {}}
+          style={{ width: "30%", bottom: "2%", position: "absolute" }}
+          icon={<CheckIcon fontSize="inherit" />}
+        >
+          You are logged in c:
+        </Alert>
+      )}
+
+      {error && (
+        <Alert
+          severity="error"
+          onClose={() => {}}
+          style={{ width: "30%", bottom: "2%", position: "absolute" }}
+          icon={<GppMaybeOutlinedIcon fontSize="inherit" />}
+        >
+          Login failed :c
+        </Alert>
+      )}
     </div>
   );
 }
