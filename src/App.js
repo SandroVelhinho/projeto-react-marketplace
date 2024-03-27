@@ -9,18 +9,30 @@ import { FilterList } from "./Comp/filterList";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { HomeComp } from "./homeComp";
+import { SeeDetails } from "./Comp/SeeDestails";
 function App() {
+  const [firebaseName, setFirebaseName] = useState("");
+  const [firebaseLname, setFirebaseLname] = useState("");
   const [state, setState] = useState("");
   return (
     <div>
       <div>
-        <Header />
+        <Header firebaseName={firebaseName} firebaseLname={firebaseLname} />
       </div>
 
       <Routes>
         <Route path="/" element={<HomeComp />} />
         <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <Login
+              setFirebaseLname={setFirebaseLname}
+              setFirebaseName={setFirebaseName}
+            />
+          }
+        />
+        <Route path="/products/:id" element={<SeeDetails />} />
       </Routes>
     </div>
   );

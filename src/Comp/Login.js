@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { useState } from "react";
 import {
   Paper,
@@ -12,10 +12,17 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import CheckIcon from '@mui/icons-material/Check'
-import GppMaybeOutlinedIcon from '@mui/icons-material/GppMaybeOutlined';
+import CheckIcon from "@mui/icons-material/Check";
+import GppMaybeOutlinedIcon from "@mui/icons-material/GppMaybeOutlined";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 
-export function Login() {
+export function Login({ setFirebaseName, setFirebaseLname }) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [success, setSuccess] = useState(false);
@@ -34,6 +41,25 @@ export function Login() {
     }, 3000);
   }
 
+  const findUserByEmail = async (email) => {
+    try {
+      const q = query(collection(db, "users"), where("email", "==", email));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const userData = querySnapshot.docs[0].data();
+        setFirebaseName(userData.name);
+        setFirebaseLname(userData.lname);
+      } else {
+        setFirebaseName("");
+        setFirebaseLname("");
+        console.log("Usuário não encontrado.");
+      }
+    } catch (error) {
+      console.error("Erro ao procurar usuário:", error);
+    }
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -41,16 +67,20 @@ export function Login() {
       .then(() => {
         setSuccess(true);
         setLoading(false);
+        findUserByEmail(email);
       })
       .catch(() => {
         setError(true);
         setLoading(false);
       });
   };
+
   return (
     <div style={{ marginTop: "4%" }}>
+      <h2 style={{marginTop:"5%", textAlign:"center"}}>Login-page</h2>
+      <h2 style={{textAlign:"center"}} >____________________________________________________________________________________</h2>
       <form>
-        <Paper elevation={10} style={{ margin: "10%" }}>
+        <Paper elevation={10} style={{marginLeft:"10%" , marginRight:"10%"}}>
           <TextField
             id="filled-basic"
             label="Email"
@@ -114,14 +144,14 @@ export function Login() {
           </div>
         </Paper>
       </form>
-      {loading && (
-        <Backdrop>
-          <CircularProgress
-            color="inherit"
-            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          />
-        </Backdrop>
-      )}
+
+      <Backdrop open={loading}>
+        <CircularProgress
+          color="inherit"
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        />
+      </Backdrop>
+
       {success && (
         <Alert
           severity="success"

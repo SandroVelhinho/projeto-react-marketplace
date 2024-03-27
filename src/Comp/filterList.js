@@ -14,32 +14,32 @@ export function FilterList({ state, setState }) {
       <Box>
         <List>
           <ListItem>
-            <ListItemButton onClick={() => setState("Vestuário")}>
-              <ListItemText>Vestuário</ListItemText>
+            <ListItemButton onClick={() => setState("Apparel")}>
+              <ListItemText>Apparel</ListItemText>
             </ListItemButton>
           </ListItem>
           <Divider />
           <ListItem>
-            <ListItemButton onClick={() => setState("Calçados")}>
-              <ListItemText>Calçados</ListItemText>
+            <ListItemButton onClick={() => setState("Footwear")}>
+              <ListItemText>Footwear</ListItemText>
             </ListItemButton>
           </ListItem>
           <Divider />
           <ListItem>
-            <ListItemButton onClick={() => setState("Eletrônicos")}>
-              <ListItemText>Eletrônicos</ListItemText>
+            <ListItemButton onClick={() => setState("Electronics")}>
+              <ListItemText>Electronics</ListItemText>
             </ListItemButton>
           </ListItem>
           <Divider />
           <ListItem>
-            <ListItemButton onClick={() => setState("Lazer")}>
-              <ListItemText>Lazer</ListItemText>
+            <ListItemButton onClick={() => setState("Leisure")}>
+              <ListItemText>Leisure</ListItemText>
             </ListItemButton>
           </ListItem>
           <Divider />
           <ListItem>
             <ListItemButton onClick={() => setState("")}>
-              <ListItemText>Tudo</ListItemText>
+              <ListItemText>All</ListItemText>
             </ListItemButton>
           </ListItem>
         </List>
