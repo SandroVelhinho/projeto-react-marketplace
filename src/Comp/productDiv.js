@@ -23,14 +23,16 @@ export function ProductContainer({filtro}) {
         {products.filter(prod => prod.categoria.includes(filtro)).map((prod) => {
           return (
             <Grid item xs={6} key={prod.id}>
-              <Paper elevation={3}>
-                <Box style={{margin:"5px"}} >
+              <Paper elevation={15}>
+                <Box style={{margin:"5px" , textAlign:"center"}} >
                   <h3>{prod.nome}</h3>
+                  <img src={require(`${prod.img}`)} alt="Imagem não encontrada" style={{ border:"solid 2px  black", maxWidth: "70%", height: "auto" }}></img>
                   <p> {prod.descrição} </p>
                 </Box>
                 <Divider />
                 <Box>
                   <Stack
+                  style={{display:"flex", alignContent:"center", justifyContent:"center"}}
                     direction={"row"}
                     spacing={2}
                     divider={<Divider orientation="vertical" flexItem />}   

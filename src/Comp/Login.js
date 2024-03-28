@@ -40,6 +40,7 @@ export function Login({ setFirebaseName, setFirebaseLname }) {
       setError(false);
     }, 3000);
   }
+  
 
   const findUserByEmail = async (email) => {
     try {
@@ -68,6 +69,7 @@ export function Login({ setFirebaseName, setFirebaseLname }) {
         setSuccess(true);
         setLoading(false);
         findUserByEmail(email);
+        navigate("/");
       })
       .catch(() => {
         setError(true);
@@ -77,10 +79,12 @@ export function Login({ setFirebaseName, setFirebaseLname }) {
 
   return (
     <div style={{ marginTop: "4%" }}>
-      <h2 style={{marginTop:"5%", textAlign:"center"}}>Login-page</h2>
-      <h2 style={{textAlign:"center"}} >____________________________________________________________________________________</h2>
+      <h2 style={{ marginTop: "5%", textAlign: "center" }}>Login-page</h2>
+      <h2 style={{ textAlign: "center" }}>
+        ____________________________________________________________________________________
+      </h2>
       <form>
-        <Paper elevation={10} style={{marginLeft:"10%" , marginRight:"10%"}}>
+        <Paper elevation={10} style={{ marginLeft: "10%", marginRight: "10%" }}>
           <TextField
             id="filled-basic"
             label="Email"
