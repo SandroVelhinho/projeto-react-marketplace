@@ -11,10 +11,13 @@ import { Route, Routes } from "react-router-dom";
 import { HomeComp } from "./homeComp";
 import { SeeDetails } from "./Comp/SeeDestails";
 import { ProductCheckout } from "./Comp/ProductCheckout";
+import { FinalComp } from "./Comp/FinalComp";
 function App() {
   const [firebaseName, setFirebaseName] = useState("");
   const [firebaseLname, setFirebaseLname] = useState("");
   const [state, setState] = useState("");
+
+  
   return (
     <div>
       <div>
@@ -33,8 +36,12 @@ function App() {
             />
           }
         />
-        <Route path="/products/:id" element={<SeeDetails />} />
-        <Route path="/checkout/:id" element={<ProductCheckout /> } />
+        <Route path="/final/:id" element={<FinalComp />} />
+        <Route
+          path="/products/:id"
+          element={<SeeDetails firebaseName={firebaseName} />}
+        />
+        <Route path="/checkout/:id" element={<ProductCheckout  />} />
       </Routes>
     </div>
   );

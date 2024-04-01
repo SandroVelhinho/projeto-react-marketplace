@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../firebase";
-import { Paper, Divider, TextField, Button, Stack, Alert } from "@mui/material";
+import { Paper, Divider, TextField, Button, Stack, Alert, Backdrop, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
@@ -23,7 +23,7 @@ export function CreateAccount() {
   const [passRegex, setPassRegex] = useState(false);
   const navigate = useNavigate();
   const usersRef = collection(db, "users");
-  
+  const [loading, setLoading] = useState(false);
 
   if (passAlert === true) {
     setTimeout(() => {
@@ -85,10 +85,12 @@ export function CreateAccount() {
 
   return (
     <div>
-      <h2 style={{marginTop:"5%", textAlign:"center"}}>Create Account</h2>
-      <h2 style={{textAlign:"center"}} >____________________________________________________________________________________</h2>
+      <h2 style={{ marginTop: "5%", textAlign: "center" }}>Create Account</h2>
+      <h2 style={{ textAlign: "center" }}>
+        ____________________________________________________________________________________
+      </h2>
       <form>
-        <Paper elevation={10} style={{marginLeft:"10%" , marginRight:"10%"}}>
+        <Paper elevation={10} style={{ marginLeft: "10%", marginRight: "10%" }}>
           <div>
             <Stack
               direction="row"
@@ -257,6 +259,12 @@ export function CreateAccount() {
           </Alert>
         )}
       </Stack>
+      <Backdrop open={loading}>
+        <CircularProgress
+          color="inherit"
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        />
+      </Backdrop>
     </div>
   );
 }

@@ -23,6 +23,21 @@ export function SeeDetails({ firebaseName }) {
     return <div>Produto não encontrado.</div>;
   }
 
+  if (firebaseName) {
+    console.log(firebaseName);
+  }
+
+  const loginVerify = () => {
+    /* if (firebaseName) {
+      navigate(`/checkout/${product.id}`);
+    } else {
+      alert("Login first")
+      navigate("/login");
+
+    } */
+    navigate(`/checkout/${product.id}`);
+  };
+
   return (
     <div>
       <h2 style={{ marginTop: "5%", textAlign: "center" }}>
@@ -87,17 +102,7 @@ export function SeeDetails({ firebaseName }) {
                   divider={<Divider orientation="vertical" flexItem />}
                 >
                   <span> {product.preço}$ </span>
-                  <Button
-                    onClick={() => {
-                      if (firebaseName) {
-                        navigate(`/checkout/${product.id}`);
-                      } else {
-                        navigate("/login");
-                      }
-                    }}
-                  >
-                    Buy
-                  </Button>
+                  <Button onClick={loginVerify}>Buy</Button>
                 </Stack>
               </Paper>
             </Grid>
