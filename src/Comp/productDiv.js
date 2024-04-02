@@ -18,7 +18,7 @@ export function ProductContainer({filtro}) {
   return (
     <div style={{marginLeft:"10%" , marginRight:"10%"}}>
       <h2 style={{marginTop:"5%", textAlign:"center"}}>Home</h2>
-      <h2 style={{textAlign:"center"}} >____________________________________________________________________________________</h2>
+      <Divider />
       <Grid container spacing={3}>
         {products.filter(prod => prod.categoria.includes(filtro)).map((prod) => {
           return (

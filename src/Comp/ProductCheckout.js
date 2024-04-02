@@ -35,11 +35,9 @@ export function ProductCheckout() {
     <div>
       <h2 style={{ marginTop: "5%", textAlign: "center" }}>
         {" "}
-        {product.nome} Ckeckout.{" "}
+        {product.nome} Checkout.{" "}
       </h2>
-      <h2 style={{ textAlign: "center" }}>
-        ____________________________________________________________________________________
-      </h2>
+      <Divider />
       <Container maxWidth="md">
         <Paper elevation={5} style={{ height: "30%", padding: "1%" }}>
           <Stack direction={"row"} spacing={50}>

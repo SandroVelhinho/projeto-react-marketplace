@@ -24,17 +24,19 @@ export function Header({ firebaseName, firebaseLname }) {
           </Button>
 
           {firebaseName ? (
-            <div
-              style={{
-                display: "flex",
-                alignContent: "center",
-                justifyContent: "center",
-                marginTop: "0.3%",
-              }}
-            >
-              <span className="satisfy-regular">
-                Hello {firebaseName} {firebaseLname}
-              </span>
+            <div>
+              <Stack direction="row" spacing={2}>
+                <Button
+                  variant="text"
+                  style={{ color: "white" }}
+                  onClick={() => navigate("/update-user-details")}
+                >
+                  User-Details
+                </Button>
+                <span className="satisfy-regular" style={{fontSize:"large", marginTop:"2%"}}>
+                  Hello {firebaseName} {firebaseLname}
+                </span>
+              </Stack>
             </div>
           ) : (
             <Button

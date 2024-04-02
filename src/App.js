@@ -12,12 +12,19 @@ import { HomeComp } from "./homeComp";
 import { SeeDetails } from "./Comp/SeeDestails";
 import { ProductCheckout } from "./Comp/ProductCheckout";
 import { FinalComp } from "./Comp/FinalComp";
+import { UpdateUserDetails } from "./Comp/UpdateUSerDetails";
+
 function App() {
   const [firebaseName, setFirebaseName] = useState("");
   const [firebaseLname, setFirebaseLname] = useState("");
   const [state, setState] = useState("");
+  const [loginFirstAlert, setLoginFirstAlert] = useState(false)
+  if(loginFirstAlert === true){
+    setTimeout(() => {
+      setLoginFirstAlert(false)
+    },3000)
+  }
 
-  
   return (
     <div>
       <div>
@@ -33,15 +40,17 @@ function App() {
             <Login
               setFirebaseLname={setFirebaseLname}
               setFirebaseName={setFirebaseName}
+              loginFirstAlert={loginFirstAlert}
             />
           }
         />
         <Route path="/final/:id" element={<FinalComp />} />
         <Route
           path="/products/:id"
-          element={<SeeDetails firebaseName={firebaseName} />}
+          element={<SeeDetails firebaseName={firebaseName} setLoginFirstAlert={setLoginFirstAlert} />}
         />
-        <Route path="/checkout/:id" element={<ProductCheckout  />} />
+        <Route path="/checkout/:id" element={<ProductCheckout />} />
+        <Route path="/update-user-details" element={<UpdateUserDetails firebaseName={firebaseName} firebaseLname={firebaseLname} />} />
       </Routes>
     </div>
   );

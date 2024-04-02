@@ -86,10 +86,8 @@ export function CreateAccount() {
   return (
     <div>
       <h2 style={{ marginTop: "5%", textAlign: "center" }}>Create Account</h2>
-      <h2 style={{ textAlign: "center" }}>
-        ____________________________________________________________________________________
-      </h2>
-      <form>
+      <Divider />
+      <form style={{marginTop:"1%"}}>
         <Paper elevation={10} style={{ marginLeft: "10%", marginRight: "10%" }}>
           <div>
             <Stack

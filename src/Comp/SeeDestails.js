@@ -13,14 +13,14 @@ import {
 
 import { useNavigate } from "react-router-dom";
 
-export function SeeDetails({ firebaseName }) {
+export function SeeDetails({ firebaseName, setLoginFirstAlert }) {
   const navigate = useNavigate();
   const { id } = useParams();
 
   const product = products.find((prod) => prod.id === id);
 
   if (!product) {
-    return <div>Produto não encontrado.</div>;
+    return <div style={{marginTop:"15%"}}>Product not found.</div>;
   }
 
   if (firebaseName) {
@@ -28,14 +28,13 @@ export function SeeDetails({ firebaseName }) {
   }
 
   const loginVerify = () => {
-    /* if (firebaseName) {
+     if (firebaseName) {
       navigate(`/checkout/${product.id}`);
     } else {
-      alert("Login first")
+      setLoginFirstAlert(true)
       navigate("/login");
 
-    } */
-    navigate(`/checkout/${product.id}`);
+    } 
   };
 
   return (
@@ -44,9 +43,7 @@ export function SeeDetails({ firebaseName }) {
         {" "}
         {product.nome} details.{" "}
       </h2>
-      <h2 style={{ textAlign: "center" }}>
-        ____________________________________________________________________________________
-      </h2>
+      <Divider />
       <Container maxWidth="sm">
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
