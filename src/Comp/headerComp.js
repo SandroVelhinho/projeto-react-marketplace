@@ -23,7 +23,7 @@ export function Header({ firebaseName, firebaseLname, setFirebaseName }) {
           >
             Home
           </Button>
-
+          <h3 style={{ margin: "auto", position:"absolute", left:"45%" }}>Marketplace</h3> 
           {firebaseName ? (
             <Stack direction={"row"} alignItems="center">
               <Stack direction="row" spacing={2}>

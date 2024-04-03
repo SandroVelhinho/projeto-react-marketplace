@@ -40,13 +40,14 @@ export function ProductCheckout() {
       <Divider />
       <Container maxWidth="md">
         <Paper elevation={5} style={{ height: "30%", padding: "1%" }}>
-          <Stack direction={"row"} spacing={50}>
+          <Stack direction={"row"} spacing={45}>
             <div>
+              <Stack direction={"row"}>
               <Chip
                 label={<b style={{ fontSize: "150%" }}> {product.nome}</b>}
                 variant="outlined"
                 sx={{
-                  width: "150px",
+                  width: "100%",
                   height: "30px",
                   fontSize: "16px",
                   borderRadius: "20px",
@@ -54,14 +55,14 @@ export function ProductCheckout() {
               />
               <Chip
                 label={<b style={{ fontSize: "120%" }}> {product.preço} $</b>}
-              />
+              /></Stack>
             </div>
             <div>
               <Stack
                 direction={"row"}
                 spacing={2}
                 divider={<Divider orientation="vertical" flexItem />}
-                style={{ float: "right" }}
+                
               >
                 <IconButton
                   onClick={() => {

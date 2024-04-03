@@ -36,7 +36,7 @@ export function CardComp({ setValidationError }) {
 
   return (
     <Container>
-      <h3 style={{ marginTop: "5%", textAlign: "center" }}>Payment Info</h3>
+      <h3 style={{ marginTop: "5%", textAlign: "center" }}>Card Info</h3>
       <Divider />
       <form>
         <Paper elevation={10} style={{ marginLeft: "10%", marginRight: "10%" }}>
@@ -63,7 +63,7 @@ export function CardComp({ setValidationError }) {
               />
               <TextField
                 id="filled-basic"
-                label="Expires At"
+              
                 variant="filled"
                 style={{
                   marginBottom: "1%",

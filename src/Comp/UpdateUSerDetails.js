@@ -25,23 +25,35 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-export function UpdateUserDetails({ firebaseName, firebaseLname }) {
+export function UpdateUserDetails({
+  firebaseName,
+  firebaseLname,
+  setFirebaseName,
+  setFirebaseLname,
+}) {
   const [name, setName] = useState(firebaseName);
   const [lname, setLname] = useState(firebaseLname);
+  const navigate = useNavigate();
 
   const findUserByName = async () => {
     try {
-      const q = query(collection(db, "users"), where("lname", "==", firebaseLname));
+      const q = query(
+        collection(db, "users"),
+        where("lname", "==", firebaseLname)
+      );
       const querySnapshot = await getDocs(q);
-  
+
       if (!querySnapshot.empty) {
         querySnapshot.forEach(async (docSnapshot) => {
           const reference = doc(db, "users", docSnapshot.id);
           await updateDoc(reference, {
             name: name,
-            lname: lname
+            lname: lname,
           });
           console.log("User details updated successfully!");
+          setFirebaseName(name);
+          setFirebaseLname(lname);
+          navigate(-1);
         });
       } else {
         console.error("User not found");

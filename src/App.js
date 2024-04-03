@@ -18,23 +18,30 @@ function App() {
   const [firebaseName, setFirebaseName] = useState("");
   const [firebaseLname, setFirebaseLname] = useState("");
   const [state, setState] = useState("");
-  const [loginFirstAlert, setLoginFirstAlert] = useState(false)
-  const [ sucessSingin, setSucessSingin] = useState(false)
-  if(loginFirstAlert === true){
+  const [loginFirstAlert, setLoginFirstAlert] = useState(false);
+  const [sucessSingin, setSucessSingin] = useState(false);
+  if (loginFirstAlert === true) {
     setTimeout(() => {
-      setLoginFirstAlert(false)
-    },3000)
+      setLoginFirstAlert(false);
+    }, 3000);
   }
 
   return (
     <div>
       <div>
-        <Header firebaseName={firebaseName} firebaseLname={firebaseLname} setFirebaseName={setFirebaseName} />
+        <Header
+          firebaseName={firebaseName}
+          firebaseLname={firebaseLname}
+          setFirebaseName={setFirebaseName}
+        />
       </div>
 
       <Routes>
         <Route path="/" element={<HomeComp />} />
-        <Route path="/create-account" element={<CreateAccount setSucessSingin={setSucessSingin} />} />
+        <Route
+          path="/create-account"
+          element={<CreateAccount setSucessSingin={setSucessSingin} />}
+        />
         <Route
           path="/login"
           element={
@@ -50,10 +57,25 @@ function App() {
         <Route path="/final/:id" element={<FinalComp />} />
         <Route
           path="/products/:id"
-          element={<SeeDetails firebaseName={firebaseName} setLoginFirstAlert={setLoginFirstAlert} />}
+          element={
+            <SeeDetails
+              firebaseName={firebaseName}
+              setLoginFirstAlert={setLoginFirstAlert}
+            />
+          }
         />
         <Route path="/checkout/:id" element={<ProductCheckout />} />
-        <Route path="/update-user-details" element={<UpdateUserDetails firebaseName={firebaseName} firebaseLname={firebaseLname} />} />
+        <Route
+          path="/update-user-details"
+          element={
+            <UpdateUserDetails
+              firebaseName={firebaseName}
+              firebaseLname={firebaseLname}
+              setFirebaseLname={setFirebaseLname}
+              setFirebaseName={setFirebaseName}
+            />
+          }
+        />
       </Routes>
     </div>
   );

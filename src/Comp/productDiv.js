@@ -40,6 +40,7 @@ export function ProductContainer({ filtro }) {
                       textAlign: "center", 
                     }}
                   >
+                    <div style={{display:"flex", alignContent:"center", justifyContent:"center"}}>
                     <Stack
                       direction={"row"}
                       spacing={2}
@@ -57,7 +58,7 @@ export function ProductContainer({ filtro }) {
                       >
                         See Details
                       </Button>
-                    </Stack>
+                    </Stack></div>
                   </Box>
                 </Paper>
               </Grid>

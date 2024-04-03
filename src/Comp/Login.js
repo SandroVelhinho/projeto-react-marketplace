@@ -79,7 +79,7 @@ export function Login({
         setSuccess(true);
         setLoading(false);
         findUserByEmail(email);
-        navigate("/");
+        navigate(-1);
       })
       .catch(() => {
         setError(true);
