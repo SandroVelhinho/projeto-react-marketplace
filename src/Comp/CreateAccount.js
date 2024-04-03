@@ -1,14 +1,23 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../firebase";
-import { Paper, Divider, TextField, Button, Stack, Alert, Backdrop, CircularProgress } from "@mui/material";
+import {
+  Paper,
+  Divider,
+  TextField,
+  Button,
+  Stack,
+  Alert,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import CheckIcon from "@mui/icons-material/Check";
 import GppMaybeOutlinedIcon from "@mui/icons-material/GppMaybeOutlined";
 
-export function CreateAccount() {
+export function CreateAccount({setSucessSingin}) {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -68,7 +77,10 @@ export function CreateAccount() {
         .catch(console.error);
 
       await createUserWithEmailAndPassword(auth, user.email, user.password)
-        .then(navigate("/login"))
+        .then(() => {
+          navigate("/login");
+          setSucessSingin(true);
+        })
         .catch(() => console.log("Something wrong"));
     } else {
       if (user.password !== user.confirmpassword) {
@@ -87,7 +99,7 @@ export function CreateAccount() {
     <div>
       <h2 style={{ marginTop: "5%", textAlign: "center" }}>Create Account</h2>
       <Divider />
-      <form style={{marginTop:"1%"}}>
+      <form style={{ marginTop: "1%" }}>
         <Paper elevation={10} style={{ marginLeft: "10%", marginRight: "10%" }}>
           <div>
             <Stack

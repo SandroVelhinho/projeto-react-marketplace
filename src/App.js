@@ -19,6 +19,7 @@ function App() {
   const [firebaseLname, setFirebaseLname] = useState("");
   const [state, setState] = useState("");
   const [loginFirstAlert, setLoginFirstAlert] = useState(false)
+  const [ sucessSingin, setSucessSingin] = useState(false)
   if(loginFirstAlert === true){
     setTimeout(() => {
       setLoginFirstAlert(false)
@@ -28,12 +29,12 @@ function App() {
   return (
     <div>
       <div>
-        <Header firebaseName={firebaseName} firebaseLname={firebaseLname} />
+        <Header firebaseName={firebaseName} firebaseLname={firebaseLname} setFirebaseName={setFirebaseName} />
       </div>
 
       <Routes>
         <Route path="/" element={<HomeComp />} />
-        <Route path="/create-account" element={<CreateAccount />} />
+        <Route path="/create-account" element={<CreateAccount setSucessSingin={setSucessSingin} />} />
         <Route
           path="/login"
           element={
@@ -41,6 +42,8 @@ function App() {
               setFirebaseLname={setFirebaseLname}
               setFirebaseName={setFirebaseName}
               loginFirstAlert={loginFirstAlert}
+              sucessSingin={sucessSingin}
+              setSucessSingin={setSucessSingin}
             />
           }
         />

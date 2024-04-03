@@ -14,6 +14,10 @@ export function FilterList({ state, setState }) {
       <Box>
         <List>
           <ListItem>
+            <ListItemText> <b>Filter</b> </ListItemText>
+          </ListItem>
+          <span>____________________</span>
+          <ListItem>
             <ListItemButton onClick={() => setState("Apparel")}>
               <ListItemText>Apparel</ListItemText>
             </ListItemButton>

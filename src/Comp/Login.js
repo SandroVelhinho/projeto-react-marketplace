@@ -22,7 +22,13 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-export function Login({ setFirebaseName, setFirebaseLname, loginFirstAlert }) {
+export function Login({
+  setFirebaseName,
+  setFirebaseLname,
+  loginFirstAlert,
+  sucessSingin,
+  setSucessSingin,
+}) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [success, setSuccess] = useState(false);
@@ -38,6 +44,11 @@ export function Login({ setFirebaseName, setFirebaseLname, loginFirstAlert }) {
   if (error === true) {
     setTimeout(() => {
       setError(false);
+    }, 3000);
+  }
+  if (sucessSingin === true) {
+    setTimeout(() => {
+      setSucessSingin(false);
     }, 3000);
   }
 
@@ -171,6 +182,16 @@ export function Login({ setFirebaseName, setFirebaseLname, loginFirstAlert }) {
           icon={<CheckIcon fontSize="inherit" />}
         >
           You are logged in c:
+        </Alert>
+      )}
+      {sucessSingin && (
+        <Alert
+          severity="success"
+          onClose={() => {}}
+          style={{ width: "30%", bottom: "2%", position: "absolute" }}
+          icon={<CheckIcon fontSize="inherit" />}
+        >
+          Account created! Please log-in.
         </Alert>
       )}
 

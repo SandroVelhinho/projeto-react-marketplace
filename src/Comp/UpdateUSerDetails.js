@@ -26,20 +26,30 @@ import {
 } from "firebase/firestore";
 
 export function UpdateUserDetails({ firebaseName, firebaseLname }) {
-    const [name, setName] = useState("");
-    const [lname, setLname] = useState("");
-  const findUserByName = async (firebaseName) => {
+  const [name, setName] = useState(firebaseName);
+  const [lname, setLname] = useState(firebaseLname);
+
+  const findUserByName = async () => {
     try {
-      const q = query(collection(db, "users"), where("name", "==", firebaseName));
-      await updateDoc(q, {
-        ...q, name: name, lname: lname
-      })
+      const q = query(collection(db, "users"), where("lname", "==", firebaseLname));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach(async (docSnapshot) => {
+          const reference = doc(db, "users", docSnapshot.id);
+          await updateDoc(reference, {
+            name: name,
+            lname: lname
+          });
+          console.log("User details updated successfully!");
+        });
+      } else {
+        console.error("User not found");
+      }
     } catch (error) {
-      console.error("Erro ao procurar usuário:", error);
+      console.error("Error updating user details:", error);
     }
   };
-
-  
 
   return (
     <div style={{ marginTop: "4%" }}>
@@ -57,6 +67,7 @@ export function UpdateUserDetails({ firebaseName, firebaseLname }) {
               marginLeft: "4%",
               width: "50%",
             }}
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <Divider />
@@ -70,6 +81,7 @@ export function UpdateUserDetails({ firebaseName, firebaseLname }) {
               marginLeft: "4%",
               width: "50%",
             }}
+            value={lname}
             onChange={(e) => setLname(e.target.value)}
           />
           <Divider />
