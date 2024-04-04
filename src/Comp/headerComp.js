@@ -15,15 +15,25 @@ export function Header({ firebaseName, firebaseLname, setFirebaseName }) {
   return (
     <div style={{ display: "block" }}>
       <AppBar position="static">
-        <Stack direction="row" justifyContent="space-between" alignItems="center" padding={2}>
-          <Button
-            variant="text"
-            style={{ color: "white" }}
-            onClick={() => navigate("/")}
-          >
-            Home
-          </Button>
-          <h3 style={{ margin: "auto", position:"absolute", left:"45%" }}>Marketplace</h3> 
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          padding={2}
+        >
+          <Stack direction={"row"} spacing={3}>
+            <h3 >
+              Marketplace
+            </h3>
+            <Button
+              variant="text"
+              style={{ color: "white" }}
+              onClick={() => navigate("/")}
+            >
+              Home
+            </Button>
+          </Stack>
+
           {firebaseName ? (
             <Stack direction={"row"} alignItems="center">
               <Stack direction="row" spacing={2}>
