@@ -10,9 +10,9 @@ import { useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 
-export function HomeComp() {
+export function HomeComp({setCartIds, cartIds}) {
   const [state, setState] = useState("");
-
+  
 
 
   return (
@@ -23,7 +23,7 @@ export function HomeComp() {
       </div>
       
       <Container fixed style={{ marginTop: "2%" }}>
-        <ProductContainer filtro={state} />
+        <ProductContainer filtro={state} setCartIds={setCartIds} cartIds={cartIds} />
         
       </Container>
     </div>

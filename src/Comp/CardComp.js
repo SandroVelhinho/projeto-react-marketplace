@@ -127,7 +127,7 @@ export function CardComp({ setValidationError }) {
               width: "50%",
               display: "flex",
               justifyContent: "center",
-              marginLeft: "25%", // Ajuste o marginLeft para centralizar o botão
+              marginLeft: "25%", 
             }}
             onClick={onSubmit}
           >

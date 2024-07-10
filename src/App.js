@@ -13,6 +13,7 @@ import { SeeDetails } from "./Comp/SeeDestails";
 import { ProductCheckout } from "./Comp/ProductCheckout";
 import { FinalComp } from "./Comp/FinalComp";
 import { UpdateUserDetails } from "./Comp/UpdateUSerDetails";
+import { CartComp } from "./Comp/CartComp";
 
 function App() {
   const [firebaseName, setFirebaseName] = useState("");
@@ -20,6 +21,7 @@ function App() {
   const [state, setState] = useState("");
   const [loginFirstAlert, setLoginFirstAlert] = useState(false);
   const [sucessSingin, setSucessSingin] = useState(false);
+  const [cartIds, setCartIds] = useState([]);
   if (loginFirstAlert === true) {
     setTimeout(() => {
       setLoginFirstAlert(false);
@@ -33,15 +35,20 @@ function App() {
           firebaseName={firebaseName}
           firebaseLname={firebaseLname}
           setFirebaseName={setFirebaseName}
+          cartIds={cartIds}
         />
       </div>
 
       <Routes>
-        <Route path="/" element={<HomeComp />} />
+        <Route
+          path="/"
+          element={<HomeComp setCartIds={setCartIds} cartIds={cartIds} />}
+        />
         <Route
           path="/create-account"
           element={<CreateAccount setSucessSingin={setSucessSingin} />}
         />
+        <Route path="/cart" element={<CartComp cartIds={cartIds}/>}></Route>
         <Route
           path="/login"
           element={
